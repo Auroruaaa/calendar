@@ -19,7 +19,7 @@ function addEvent() {
   const input = document.getElementById('task-input').value;
   const parsed = parseNaturalInput(input);
   if (!parsed) {
-    alert(\"Try something like: 'Meeting at 2:00pm'\");
+    alert("Try something like: 'Meeting at 2:00pm'");
     return;
   }
   events.push(parsed);
