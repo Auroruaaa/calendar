@@ -144,7 +144,7 @@ button:hover {
   color: #999;
 }
 
-.event {
+/* .event {
   position: absolute;
   left: 60px;
   right: 10px;
@@ -155,4 +155,18 @@ button:hover {
   color: #000;
   font-size: 14px;
   box-sizing: border-box;
+} */
+
+/* New Feature: multiple events at the same time
+ */
+.event {
+  position: absolute;
+  background-color: #90caf9;
+  border-left: 4px solid #1e88e5;
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: #000;
+  font-size: 14px;
+  box-sizing: border-box;
 }
+
