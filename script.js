@@ -56,6 +56,19 @@
 //     calendar.appendChild(row);
 //   }
 // }
+
+
+// Current Version
+
+// function generateSchedule() {
+//   const input = document.getElementById("taskInput").value;
+//   const schedule = document.getElementById("schedule");
+//   schedule.innerHTML = "";
+
+//   const startHour = 0;
+//   const endHour = 24;
+
+// New Feature: multiple events at the same time
 function generateSchedule() {
   const input = document.getElementById("taskInput").value;
   const schedule = document.getElementById("schedule");
@@ -63,6 +76,69 @@ function generateSchedule() {
 
   const startHour = 0;
   const endHour = 24;
+
+  // Create hourly grid
+  for (let h = startHour; h <= endHour; h++) {
+    const timeSlot = document.createElement("div");
+    timeSlot.className = "time-slot";
+    const label = document.createElement("div");
+    label.className = "time-label";
+    label.innerText = `${String(h).padStart(2, "0")}:00`;
+    timeSlot.appendChild(label);
+    schedule.appendChild(timeSlot);
+  }
+
+  const lines = input.split("\n").filter(line => /\d/.test(line));
+  let events = [];
+
+  for (let line of lines) {
+    const match = line.match(/(\d{1,2}:\d{2})-(\d{1,2}:\d{2})\s+(.*)/);
+    if (!match) continue;
+
+    const [_, start, end, title] = match;
+    const [sh, sm] = start.split(":").map(Number);
+    const [eh, em] = end.split(":").map(Number);
+    const startTime = sh + sm / 60;
+    const endTime = eh + em / 60;
+
+    events.push({ startTime, endTime, title });
+  }
+
+  // Detect overlaps
+  events.sort((a, b) => a.startTime - b.startTime);
+
+  for (let i = 0; i < events.length; i++) {
+    const overlapping = [events[i]];
+    for (let j = i + 1; j < events.length; j++) {
+      if (events[j].startTime < events[i].endTime) {
+        overlapping.push(events[j]);
+        i = j; // Skip next loop
+      } else {
+        break;
+      }
+    }
+
+    // Render each overlapping event with correct width/left
+    overlapping.forEach((e, idx) => {
+      const topPercent = ((e.startTime - startHour) / (endHour - startHour)) * 100;
+      const heightPercent = ((e.endTime - e.startTime) / (endHour - startHour)) * 100;
+
+      const eventDiv = document.createElement("div");
+      eventDiv.className = "event";
+      eventDiv.innerText = e.title;
+
+      eventDiv.style.position = "absolute";
+      eventDiv.style.top = `${topPercent}%`;
+      eventDiv.style.height = `${heightPercent}%`;
+
+      const width = 100 / overlapping.length;
+      eventDiv.style.width = `calc(${width}% - 5px)`;
+      eventDiv.style.left = `calc(${idx * width}% + 60px)`; // Offset for time label
+
+      schedule.appendChild(eventDiv);
+    });
+  }
+}
 
   // Create hourly grid
   for (let h = startHour; h <= endHour; h++) {
