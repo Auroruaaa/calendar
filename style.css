@@ -123,7 +123,7 @@ button:hover {
 }
 
 .time-slot {
-  position: relative;
+/*   position: relative; */
   height: 60px;
   border-top: 1px solid #eee;
   padding-left: 60px;
