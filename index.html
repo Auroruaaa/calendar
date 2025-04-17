@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Schedule</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 <body>
 
   <h1>My Daily Schedule</h1>
 
-  <textarea id="taskInput" rows="10" cols="50" placeholder="Example:
-Apr. 17
-09:00-10:00 Team Meeting
-10:30-12:00 Project Work
-11:00-12:00 Overlapping Call
-14:00-15:00 Design Review
-"></textarea>
-  <br />
-  <button onclick="generateSchedule()">Generate Schedule</button>
+  <div class="container">
+    <div class="input-section">
+      <textarea id="taskInput" placeholder="Apr. 17&#10;09:00-09:30 Breakfast&#10;09:30-10:00 To Campus&#10;10:00-12:30 Lib&#10;12:30-13:30 Lunch"></textarea>
+      <br />
+      <button onclick="generateSchedule()">Generate Schedule</button>
+    </div>
 
-  <div id="schedule-date"></div>
-  <div id="schedule"></div>
+    <div class="schedule-section">
+      <div id="schedule-date"></div>
+      <div id="schedule"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
-</html>
