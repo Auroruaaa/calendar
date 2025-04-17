@@ -61,8 +61,8 @@ function generateSchedule() {
   const schedule = document.getElementById("schedule");
   schedule.innerHTML = "";
 
-  const startHour = 6;
-  const endHour = 22;
+  const startHour = 0;
+  const endHour = 24;
 
   // Create hourly grid
   for (let h = startHour; h <= endHour; h++) {
@@ -97,7 +97,7 @@ function generateSchedule() {
     // eventDiv.style.height = `calc(${heightPercent}% - 2px)`;
     const hourHeight = 60;
     const startOffset = (startTime - startHour) * hourHeight;
-    const blockHeight = (endTime - startTime) * hourHeight;
+    const blockHeight = (endTime - startTime) * hourHeight - 1;
     
     eventDiv.style.top = `${startOffset}px`;
     eventDiv.style.height = `${blockHeight}px`;
