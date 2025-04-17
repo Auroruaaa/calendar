@@ -87,14 +87,21 @@ function generateSchedule() {
     const startTime = startParts[0] + startParts[1] / 60;
     const endTime = endParts[0] + endParts[1] / 60;
 
-    const topPercent = ((startTime - startHour) / (endHour - startHour)) * 100;
-    const heightPercent = ((endTime - startTime) / (endHour - startHour)) * 100;
+    // const topPercent = ((startTime - startHour) / (endHour - startHour)) * 100;
+    // const heightPercent = ((endTime - startTime) / (endHour - startHour)) * 100;
 
     const eventDiv = document.createElement("div");
     eventDiv.className = "event";
     // eventDiv.style.top = `calc(${topPercent}% + ${startTime - startHour}px)`;
-    eventDiv.style.top = `${topPercent}%`;
-    eventDiv.style.height = `calc(${heightPercent}% - 2px)`;
+    // eventDiv.style.top = `${topPercent}%`;
+    // eventDiv.style.height = `calc(${heightPercent}% - 2px)`;
+    const hourHeight = 60;
+    const startOffset = (startTime - startHour) * hourHeight;
+    const blockHeight = (endTime - startTime) * hourHeight;
+    
+    eventDiv.style.top = `${startOffset}px`;
+    eventDiv.style.height = `${blockHeight}px`;
+
     eventDiv.innerText = title;
     eventDiv.style.position = "absolute";
 
