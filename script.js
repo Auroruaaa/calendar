@@ -136,7 +136,7 @@ function generateSchedule() {
       eventDiv.style.left = `calc(${idx * width}% + 60px)`; // Offset for time label
 
       schedule.appendChild(eventDiv);
-    });
+    };
   }
 }
 
