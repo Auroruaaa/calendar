@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Schedule</title>
+  <title>My Daily Schedule</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>My Daily Schedule</h1>
+  <div class="calendar-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <textarea id="taskInput" placeholder="Apr. 17&#10;09:00-10:00 Meeting&#10;10:00-12:00 Study"></textarea>
+      <button onclick="generateSchedule()">Generate Schedule</button>
+    </div>
 
-  <textarea id="taskInput" rows="10" cols="50" placeholder="Example:
-Apr. 17
-09:00-10:00 Team Meeting
-10:30-12:00 Project Work
-11:00-12:00 Overlapping Call
-14:00-15:00 Design Review
-"></textarea>
-  <br />
-  <button onclick="generateSchedule()">Generate Schedule</button>
-
-  <div id="schedule-date"></div>
-  <div id="schedule"></div>
+    <!-- Calendar -->
+    <div class="calendar">
+      <div id="schedule-date"></div>
+      <div id="schedule-wrapper">
+        <div id="time-labels"></div>
+        <div id="schedule"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
