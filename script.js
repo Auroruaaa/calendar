@@ -140,47 +140,47 @@ function generateSchedule() {
   }
 }
 
-  // Create hourly grid
-  for (let h = startHour; h <= endHour; h++) {
-    const timeSlot = document.createElement("div");
-    timeSlot.className = "time-slot";
-    const label = document.createElement("div");
-    label.className = "time-label";
-    label.innerText = `${String(h).padStart(2, "0")}:00`;
-    timeSlot.appendChild(label);
-    schedule.appendChild(timeSlot);
-  }
+//   // Create hourly grid
+//   for (let h = startHour; h <= endHour; h++) {
+//     const timeSlot = document.createElement("div");
+//     timeSlot.className = "time-slot";
+//     const label = document.createElement("div");
+//     label.className = "time-label";
+//     label.innerText = `${String(h).padStart(2, "0")}:00`;
+//     timeSlot.appendChild(label);
+//     schedule.appendChild(timeSlot);
+//   }
 
-  const lines = input.split("\n").filter(line => /\d/.test(line));
-  for (let line of lines) {
-    const match = line.match(/(\d{1,2}:\d{2})-(\d{1,2}:\d{2})\s+(.*)/);
-    if (!match) continue;
+//   const lines = input.split("\n").filter(line => /\d/.test(line));
+//   for (let line of lines) {
+//     const match = line.match(/(\d{1,2}:\d{2})-(\d{1,2}:\d{2})\s+(.*)/);
+//     if (!match) continue;
 
-    const [_, start, end, title] = match;
+//     const [_, start, end, title] = match;
 
-    const startParts = start.split(":").map(Number);
-    const endParts = end.split(":").map(Number);
-    const startTime = startParts[0] + startParts[1] / 60;
-    const endTime = endParts[0] + endParts[1] / 60;
+//     const startParts = start.split(":").map(Number);
+//     const endParts = end.split(":").map(Number);
+//     const startTime = startParts[0] + startParts[1] / 60;
+//     const endTime = endParts[0] + endParts[1] / 60;
 
-    const topPercent = ((startTime - startHour) / (endHour - startHour)) * 100;
-    const heightPercent = ((endTime - startTime) / (endHour - startHour)) * 100;
+//     const topPercent = ((startTime - startHour) / (endHour - startHour)) * 100;
+//     const heightPercent = ((endTime - startTime) / (endHour - startHour)) * 100;
 
-    const eventDiv = document.createElement("div");
-    eventDiv.className = "event";
-    // eventDiv.style.top = `calc(${topPercent}% + ${startTime - startHour}px)`;
-    eventDiv.style.top = `${topPercent}% + 10px`;
-    eventDiv.style.height = `calc(${heightPercent}% - 2px)`;
-    // const hourHeight = 60;
-    // const startOffset = (startTime - startHour) * hourHeight;
-    // const blockHeight = (endTime - startTime) * hourHeight - 1;
+//     const eventDiv = document.createElement("div");
+//     eventDiv.className = "event";
+//     // eventDiv.style.top = `calc(${topPercent}% + ${startTime - startHour}px)`;
+//     eventDiv.style.top = `${topPercent}% + 10px`;
+//     eventDiv.style.height = `calc(${heightPercent}% - 2px)`;
+//     // const hourHeight = 60;
+//     // const startOffset = (startTime - startHour) * hourHeight;
+//     // const blockHeight = (endTime - startTime) * hourHeight - 1;
     
-    // eventDiv.style.top = `${startOffset}px`;
-    // eventDiv.style.height = `${blockHeight}px`;
+//     // eventDiv.style.top = `${startOffset}px`;
+//     // eventDiv.style.height = `${blockHeight}px`;
 
-    eventDiv.innerText = title;
-    eventDiv.style.position = "absolute";
+//     eventDiv.innerText = title;
+//     eventDiv.style.position = "absolute";
 
-    schedule.appendChild(eventDiv);
-  }
-}
+//     schedule.appendChild(eventDiv);
+//   }
+// }
